@@ -95,13 +95,32 @@ if errorlevel 1 (
     echo.
     echo [FAILED] Flash failed.
     echo Check: USB cable (data cable), driver (CH340/CP210x), download mode.
-) else (
-    echo.
-    echo [DONE] Flash OK. Press RST to reboot the board.
-    echo.
-    echo Next: connect Wi-Fi, the screen shows a 6-digit activation code.
-    echo Register on the website and enter the code to activate.
+    pause
+    exit /b 1
 )
 
 echo.
+echo [DONE] Flash OK. Press RST to reboot the board.
+echo.
+echo Next steps:
+echo   1. Connect Wi-Fi (AP: Daoxuan-xxxx)
+echo   2. Wait for the activation code
+echo   3. Register on the website and enter the code
+echo.
+
+rem ---- open serial monitor to show activation code ----
+echo [MONITOR] Opening serial monitor at 115200...
+echo           Press Ctrl+C to exit.
+echo.
+python -c "import serial" >nul 2>nul
+if errorlevel 1 (
+    echo [WARN] pyserial not installed, cannot auto-open monitor.
+    echo        Install with: pip install pyserial
+    echo        Or open PuTTY / serial tool at 115200 on %PORT%
+    pause
+    exit /b 0
+)
+
+python -m serial.tools.miniterm %PORT% 115200
+
 pause

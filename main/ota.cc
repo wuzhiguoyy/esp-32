@@ -198,6 +198,17 @@ NetworkResult<> Ota::CheckVersion() {
         if (cJSON_IsString(code)) {
             activation_code_ = code->valuestring;
             has_activation_code_ = true;
+
+            // 串口输出激活码：无屏幕的板子也能完成激活
+            ESP_LOGW(TAG, "");
+            ESP_LOGW(TAG, "==================================================");
+            ESP_LOGW(TAG, " ACTIVATION CODE: %s", activation_code_.c_str());
+            ESP_LOGW(TAG, " Open the website, register, then enter this code.");
+            ESP_LOGW(TAG, "==================================================");
+            ESP_LOGW(TAG, "");
+            if (!activation_message_.empty()) {
+                ESP_LOGI(TAG, "Activation message: %s", activation_message_.c_str());
+            }
         }
         cJSON* challenge = cJSON_GetObjectItem(activation, "challenge");
         if (cJSON_IsString(challenge)) {
