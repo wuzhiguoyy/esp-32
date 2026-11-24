@@ -15,7 +15,7 @@
           <el-menu-item index="/products">产品管理</el-menu-item>
           <el-menu-item index="/profiles">设备配置</el-menu-item>
         </el-sub-menu>
-        <el-sub-menu index="billing">
+        <el-sub-menu v-if="billingEnabled" index="billing">
           <template #title>计费</template>
           <el-menu-item index="/plans">套餐管理</el-menu-item>
           <el-menu-item index="/orders">订单管理</el-menu-item>
@@ -50,9 +50,11 @@
 <script setup>
 import { useRouter } from 'vue-router'
 import { clearToken, getUser } from '../api/request'
+import { BILLING_ENABLED } from '../config/features'
 
 const router = useRouter()
 const user = getUser()
+const billingEnabled = BILLING_ENABLED
 
 function logout() {
   clearToken()
