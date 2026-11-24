@@ -136,6 +136,12 @@ End users do not need ESP-IDF. Download the `.bin` and flash with one script:
 
 **Live Demo**: <https://wuzhiguoyy.github.io/esp-32/#/login>
 
+| Demo account | Password | Role |
+| --- | --- | --- |
+| `admin` | `admin123` | Super admin |
+
+> The demo account is for evaluation only. Please do not change data or password; register your own account for production use.
+
 <table>
 <tr>
 <td align="center"><img src="docs/v2/登录页.png" width="420"><br>Login</td>

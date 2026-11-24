@@ -218,6 +218,12 @@ idf.py merge-bin
 
 **在线体验**：<https://wuzhiguoyy.github.io/esp-32/#/login>
 
+| 演示账号 | 密码 | 权限 |
+| --- | --- | --- |
+| `admin` | `admin123` | 超级管理员 |
+
+> 演示账号仅用于体验功能，请勿修改其中的数据或密码；正式使用请注册自己的账号。
+
 <table>
 <tr>
 <td align="center"><img src="docs/v2/登录页.png" width="420"><br>登录页</td>
