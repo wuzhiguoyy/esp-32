@@ -151,8 +151,22 @@ bool Esp32Camera::Capture() {
     return true;
 }
 
-bool Esp32Camera::SetHMirror(bool enabled) {
-    sensor_t* s = esp_camera_sensor_get();
+bool Esp32Camera::CaptureJpeg(std::string* out) {
+    if (out == nullptr) {
+        return false;
+    }
+    if (!Capture()) {
+        return false;
+    }
+    if (current_fb_ == nullptr || current_fb_->format != PIXFORMAT_JPEG) {
+        ESP_LOGW(TAG, "CaptureJpeg requires PIXFORMAT_JPEG output");
+        return false;
+    }
+    out->assign(reinterpret_cast<const char*>(current_fb_->buf), current_fb_->len);
+    return !out->empty();
+}
+
+bool Esp32Camera::SetHMirror(bool enabled) {    sensor_t* s = esp_camera_sensor_get();
     if (!s) {
         return false;
     }

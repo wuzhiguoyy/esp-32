@@ -1,11 +1,27 @@
 #include "shop_tools.h"
 
 #include "mcp_server.h"
+#include "board.h"
+#include "features/camera_uploader.h"
 #include "features/door_lock.h"
 #include "features/weight_sensor.h"
 #include "features/rfid_reader.h"
 
 void RegisterShopTools(McpServer& server) {
+    // 拍照上传：板子有摄像头时注册
+    if (Board::GetInstance().GetCamera() != nullptr) {
+        server.AddTool("self.camera.upload_photo",
+                       "Take a photo and upload it to the server. Returns the image URL.",
+                       PropertyList(),
+                       [](const PropertyList&) -> ToolResult {
+                           std::string url;
+                           if (!CameraUploader::CaptureAndUpload(&url)) {
+                               return std::unexpected("Upload failed");
+                           }
+                           return ReturnValue(url);
+                       });
+    }
+
 #if CONFIG_ESP32_SHOP_LOCK
     // 开门：远程/语音都可以触发，服务端也会调用
     server.AddTool("self.lock.open",

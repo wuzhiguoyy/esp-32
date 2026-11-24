@@ -1,8 +1,8 @@
 <div align="center">
 
-# 道玄 AI 语音助手 · ESP32 固件
+# Daoxuan AI Voice Assistant · ESP32 Firmware
 
-**Daoxuan AI Voice Assistant — Open-Source ESP32 Voice Firmware**
+**Open-source AI voice firmware for ESP32 · OTA activation · real-time LLM voice chat · MCP device control · Vue admin console**
 
 [![License](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE)
 [![Platform](https://img.shields.io/badge/platform-ESP32%20%7C%20S3%20%7C%20C3%20%7C%20C5%20%7C%20C6%20%7C%20P4-informational)](docs/)
@@ -10,21 +10,37 @@
 [![Language](https://img.shields.io/badge/language-C%20%2F%20C%2B%2B-00599C)](main/)
 [![Admin](https://img.shields.io/badge/admin-Vue%203%20%2B%20Vite-42b883)](vue-ai/)
 
-**开箱即用的 AI 语音固件 · OTA 激活 · WebSocket 实时对话 · MCP 设备控制 · Vue 管理后台**
+[中文](README_zh.md) · [日本語](README_ja.md)
 
-**English keywords**: ESP32 AI voice assistant, open-source ESP32 firmware, ESP32-S3 voice chat, offline wake word, LLM voice interaction, MCP device control, OTA activation, AI hardware solution, smart toy, companion robot, translation pendant.
+</div>
 
-**What you may be searching for**
+---
+
+## Introduction
+
+**Daoxuan AI Voice Assistant** is an open-source AI voice firmware running on the ESP32 family, developed and maintained by Shanghai Daoxuan Weishu Information Technology Co., Ltd. on top of an MIT-licensed voice framework.
+
+Flash the firmware, connect Wi-Fi, and the device can wake on voice, hold real-time conversations, execute device commands, and support OTA activation and device licensing.
+
+- **Zero configuration**: official service endpoint is built in, flash and use
+- **Full pipeline**: microphone → Opus encode → streaming ASR → LLM → TTS → playback
+- **Multi-chip**: ESP32 / ESP32-C3 / ESP32-C5 / ESP32-C6 / ESP32-S3 / ESP32-P4
+- **Multi-board**: 168 board configurations from Espressif, M5Stack, Waveshare, LCKFB, LILYGO and more
+
+**Keywords**: ESP32 AI voice assistant, open-source ESP32 firmware, ESP32-S3 voice chat, offline wake word, LLM voice interaction, MCP device control, OTA activation, AI hardware solution, smart toy, companion robot, translation pendant.
+
+### What you may be searching for
 
 - ESP32 voice assistant with DeepSeek / Qwen / Doubao
 - ESP32-S3 voice development board firmware
 - Open-source AI voice firmware for commercial products
 - ESP-IDF voice assistant template
 - Voice firmware with device activation and licensing
+- Offline wake word + cloud ASR/TTS architecture
 - Kids companion robot voice solution
-- Chinese-English translation pendant
+- Chinese-English translation pendant firmware
 
-**Tech stack**
+### Tech stack
 
 | Layer | Technology |
 | --- | --- |
@@ -36,135 +52,173 @@
 | Admin | Vue 3, Vite, Element Plus |
 | Storage | Alibaba Cloud OSS |
 
-[English](README.md)
-
-</div>
-
 ---
 
-## 项目简介
+## Core features
 
-**道玄 AI 语音助手**是运行在 ESP32 系列芯片上的开源 AI 语音固件，由上海道玄微数信息科技有限公司基于 MIT 协议的开源语音框架二次开发并持续维护。
+### Built in
 
-刷入固件、连接 Wi-Fi，设备即可语音唤醒、实时对话、执行设备指令，并支持远程 OTA 升级与设备授权管理。
-
-- **零配置接入**：固件内置官方服务地址，烧录即可使用
-- **完整链路**：麦克风采集 → Opus 编码 → 流式识别 → 大模型 → 语音合成 → 播放
-- **多芯片支持**：ESP32 / ESP32-C3 / ESP32-C5 / ESP32-C6 / ESP32-S3 / ESP32-P4
-- **多板型支持**：100+ 开发板，覆盖乐鑫、M5Stack、微雪、立创、LILYGO 等主流硬件
-- **可私有化**：服务端、语音服务、模型 Key 均可自持
-
-> 适合：AI 硬件开发者、语音交互产品团队、智能玩具 / 陪伴机器人 / 桌面助手厂商。
-
----
-
-## 核心能力
-
-| 能力 | 说明 |
+| Area | Capability |
 | --- | --- |
-| 离线语音唤醒 | 基于 ESP-SR，本地唤醒，低延迟、低功耗 |
-| 实时语音对话 | WebSocket 长连接，Opus 16k 音频流 |
-| 大模型接入 | DeepSeek / 通义千问 / 豆包 / OpenAI 兼容接口 |
-| 语音识别与合成 | 服务端 ASR + TTS，支持中英多语言 |
-| MCP 设备控制 | 音量、屏幕、灯光、电机、摄像头等设备工具 |
-| OTA 远程升级 | 版本管理、灰度发布、远程重启 |
-| 设备授权 | 激活码绑定、账号归属、禁用控制 |
-| 多语言界面 | 38 种界面语言，语音资源本地化 |
-| 配网方式 | 热点配网、BluFi 蓝牙配网、有线以太网、4G |
-| 管理后台 | 设备、产品、套餐、订单、固件、审计一站式管理 |
+| Voice | Offline wake word, Opus 16k streaming chat, interruption, continuous dialog |
+| Device | Volume, screen, LED, motor, camera control via MCP (150+ tools) |
+| Power | Battery estimation, low-power sleep |
+| Network | Wi-Fi hotspot, BluFi, Ethernet, 4G modules |
+| Cloud | OTA config, activation code licensing, DeepSeek / Qwen / Doubao, ASR + TTS |
+| Admin | Devices, online status, products, boards, voices, firmware versions |
+| Billing | Plans, orders, subscriptions (hidden by default, can be enabled) |
+
+### Optional features (compile flags, hardware required)
+
+| Feature | Switch | Hardware | Status |
+| --- | --- | --- | --- |
+| GPS location reporting | `ESP32_FEATURE_GPS` | GPS module | Code complete |
+| Door lock / access control | `ESP32_SHOP_LOCK` | Relay + lock | Code complete |
+| HX711 weight sensor | `ESP32_SHOP_WEIGHT` | Load cell | Code complete |
+| RC522 RFID reader | `ESP32_SHOP_RFID` | RC522 module | Code complete |
+| Photo capture & upload | built-in | Camera (JPEG output) | Code complete |
+| RTSP MJPEG streaming | `ESP32_RTSP_SERVER` | Camera | Code complete |
+| Activation code over serial | built-in | None | Code complete |
+
+### Server-side support
+
+| Feature | Description |
+| --- | --- |
+| Unified file table | `esp32_file` stores recordings, photos and videos; business keeps only `fileId` |
+| File upload | One endpoint for users, devices and internal services |
+| Video recording | Python pulls RTSP → segments MP4 → uploads → registers metadata |
+| Device location | Coordinate reporting API + `esp32_location` table |
+| Role isolation | Customers see only their devices; admin APIs require admin role |
+
+### Not implemented yet
+
+| Feature | Reason |
+| --- | --- |
+| Continuous on-device recording | Server pipeline ready; firmware does not keep the mic open |
+| Real-time video calls | ESP32 cannot sustain video; only low-FPS MJPEG streaming |
+| USB barcode scanner / thermal printer | Not integrated |
+| OTA firmware upgrade delivery | Firmware side ready; server upgrade URL not configured |
 
 ---
 
-## 系统架构
+## Architecture
 
 ```text
 ┌──────────────┐        ┌──────────────────┐        ┌─────────────────┐
-│  ESP32 设备   │  OTA   │   Java 服务端     │  HTTP  │  Python 语音服务 │
-│  麦克风/喇叭  │ ─────► │  激活 / 授权      │ ─────► │  ASR / TTS      │
-│  Opus 编解码  │  WSS   │  WebSocket 网关   │        │  ffmpeg / 模型   │
+│  ESP32 device │  OTA   │   Java backend   │  HTTP  │  Python service  │
+│  mic/speaker  │ ─────► │  activation      │ ─────► │  ASR / TTS      │
+│  Opus codec   │  WSS   │  WebSocket GW    │        │  ffmpeg/model   │
 └──────────────┘ ◄───── └──────────────────┘        └─────────────────┘
         │                        │                          │
         │                        ▼                          ▼
         │               ┌──────────────────┐        ┌─────────────────┐
-        └──────────────►│   Vue 管理后台    │        │  大模型 API      │
-                        │  设备/套餐/固件    │        │ DeepSeek/Qwen   │
+        └──────────────►│   Vue console    │        │   LLM APIs       │
+                        │ devices/firmware │        │ DeepSeek/Qwen    │
                         └──────────────────┘        └─────────────────┘
 ```
 
 ---
 
-## 支持的芯片
+## Supported chips and boards
 
-| 芯片 | 推荐场景 |
+### Chips
+
+| Chip | Supported | Recommended use |
+| --- | --- | --- |
+| ESP32 | ✅ | Basic voice |
+| ESP32-S3 | ✅ | First choice: screen, camera, AEC |
+| ESP32-C3 | ✅ | Low-cost pendants, toys |
+| ESP32-C5 | ✅ | Wi-Fi 6 platforms |
+| ESP32-C6 | ✅ | Low-power platforms |
+| ESP32-P4 | ✅ | High-performance display devices |
+| ESP8266 | ❌ | Not supported |
+
+### Feature requirements
+
+| Feature | Requirement |
 | --- | --- |
-| ESP32-S3 | 首选，带屏、摄像头、AEC 全功能 |
-| ESP32-C3 | 低成本挂件、语音玩具 |
-| ESP32-C5 / C6 | 新平台，Wi-Fi 6 / 低功耗 |
-| ESP32-P4 | 高性能屏显设备 |
-| ESP32 | 基础语音 |
+| Voice chat / wake word | C3 or better recommended |
+| GPS / lock / weight / RFID | Any ESP32 family (UART / GPIO / SPI) |
+| Photo upload / RTSP | Camera + PSRAM, S3 recommended |
+| Screen UI | Board with display |
+| 4G connectivity | Board with 4G module |
+
+> All chips are supported at firmware level; actual features depend on the board peripherals.
+
+Boards: **168 board configurations** covering Espressif, M5Stack, Waveshare, LCKFB, LILYGO, Seeed, DFRobot, ALIENTEK and others.
 
 ---
 
-## 快速开始
+## Quick start
 
-### 1. 环境要求
+### 1. Requirements
 
-- **ESP-IDF v6.1**（最低 v6.0.1，不支持 5.x）
-- Git、Python 3.10+
-- USB 数据线、ESP32 开发板
+- ESP-IDF **v6.1**
+- Python **3.10+**
+- USB data cable
+- One supported board
 
-### 2. 获取源码
+### 2. Clone
 
 ```bash
 git clone https://github.com/wuzhiguoyy/esp-32.git
 cd esp-32
 ```
 
-### 3. 选择板型
+Gitee mirror: `https://gitee.com/wuzhiguo/esp-32`
+
+### 3. Build
 
 ```bash
-idf.py menuconfig
-# Xiaozhi Assistant → Board Type
-```
-
-### 4. 设置芯片并编译
-
-```bash
-idf.py set-target esp32s3
+idf.py set-target esp32s3   # match your chip
+idf.py menuconfig           # Xiaozhi Assistant → Board Type
 idf.py build
 ```
 
-### 5. 烧录
+### 4. Flash
 
 ```bash
 idf.py -p COM3 flash monitor
 ```
 
-### 6. 开机激活
+Or use the packaged `tools/flash.bat` on Windows.
 
-设备联网后屏幕显示 **6 位激活码**，在管理后台或客户端输入该激活码完成绑定，设备自动激活。
+### 5. Activation
 
-### No toolchain? Use prebuilt firmware
+After the device connects to Wi-Fi, the server generates a 6-digit activation code.
 
-End users do not need ESP-IDF. Download the `.bin` and flash with one script:
+| Board type | How to read the code |
+| --- | --- |
+| With screen | Shown on the display |
+| Without screen | Serial log: `ACTIVATION CODE: 123456` at 115200 |
+| With speaker | Spoken prompt on some boards |
 
-👉 **[Quick Start (5 steps)](docs/quickstart_zh.md)** · Flasher: [tools/flash.bat](tools/flash.bat)
+Then register on the website, open **My Devices**, enter the code and the device is activated.
 
-完整教程：[README_zh.md](README_zh.md)
+Detailed guide: [docs/quickstart_zh.md](docs/quickstart_zh.md)
+
+### Prebuilt firmware
+
+See [Releases](https://github.com/wuzhiguoyy/esp-32/releases). Each release is built for one chip and board type.
+
+### Hardware requirements
+
+| Purpose | Needs |
+| --- | --- |
+| Flash + activate only | Board + USB cable (serial shows the code) |
+| Screen activation code | Board with display |
+| Voice chat | Microphone + speaker |
+| Full experience | Screen + mic + speaker (e.g. S3-BOX-3, CoreS3) |
 
 ---
 
-## 管理后台
+## Admin console
 
-`vue-ai/` 提供完整的设备运营后台：
+Vue 3 + Element Plus, deployed on GitHub Pages.
 
-**Live Demo**: <https://wuzhiguoyy.github.io/esp-32/#/login>
+Live demo: **https://wuzhiguoyy.github.io/esp-32/#/login**
 
-| Demo account | Password | Role |
-| --- | --- | --- |
-| `demo` | `demo123` | Viewer (read-only) |
-
-> The demo account is for evaluation only. Please do not modify data; register your own account for production use.
+Demo account: `demo / demo123` (read-only)
 
 ### Screenshots
 
@@ -181,103 +235,116 @@ End users do not need ESP-IDF. Download the `.bin` and flash with one script:
 </tr>
 </table>
 
+Run locally:
+
 ```bash
 cd vue-ai
 npm install
 npm run dev
 ```
 
-| 模块 | 功能 |
-| --- | --- |
-| 设备管理 | 绑定 / 解绑 / 禁用 / 在线状态 |
-| 产品配置 | 板型、运行模式、音色、唤醒词 |
-| 计费管理 | 套餐、订单、订阅、用量统计 |
-| 固件管理 | 版本、下载地址、灰度发布 |
-| 模型 Key | 平台 / 客户 / 设备三级 Key |
-| 操作审计 | 后台操作全量留痕 |
+---
 
-支持 GitHub Pages 自动部署，配置 `VITE_API_BASE` 后推送即可发布。
+## Use cases
+
+| Scenario | Description |
+| --- | --- |
+| AI companion toys | Wake word + chat + expressions |
+| Desktop robots | Voice + screen + motion control |
+| Translation pendants | Chinese-English real-time translation |
+| Kids story machines | Storytelling and Q&A |
+| Elderly care | Voice reminders |
+| Unmanned stores | Voice prompt + lock + weight + RFID |
+| Vehicle tracking | GPS reporting (optional module) |
 
 ---
 
-## 适用场景
+## Performance
 
-- AI 语音助手 / 智能音箱
-- 儿童陪伴机器人 / 故事机
-- 桌面机器人 / 摆件
-- 智能家居中控
-- 多语种翻译挂件
-- 企业定制语音终端
+| Item | Value |
+| --- | --- |
+| Wake word latency | < 300 ms |
+| End-to-end voice latency | 1–2 s (network dependent) |
+| Audio | Opus 16 kHz mono, 60 ms frames |
+| RAM usage | ~200 KB + board drivers |
+| Languages | 38 UI languages |
 
 ---
 
 ## FAQ
 
-**Can ESP32 run an AI voice assistant?**
-Yes. This firmware handles audio capture, Opus encoding, playback and device control; ASR, LLM and TTS run on the server.
+**Q: Which chip should I choose?**
+A: ESP32-S3 for screen/camera products; C3 for low-cost pendants.
 
-**Which chips are supported?**
-ESP32, ESP32-C3, ESP32-C5, ESP32-C6, ESP32-S3 and ESP32-P4.
+**Q: Does it require my own server?**
+A: No for evaluation: the official service endpoint is built in. For production you deploy the Java + Python services yourself.
 
-**Does it need internet?**
-Wake word detection is on-device; speech recognition, LLM and TTS require network access.
+**Q: Can I use my own LLM?**
+A: Yes, configure DeepSeek / Qwen / Doubao keys in the admin console.
 
-**Which LLM providers work?**
-DeepSeek, Qwen, Doubao and any OpenAI-compatible endpoint. Keys can be configured per platform, per customer or per device.
+**Q: How do I activate without a screen?**
+A: Read the activation code from the serial log at 115200 baud.
 
-**Can I self-host the server?**
-Yes. Implement the OTA and WebSocket protocols documented in `docs/`.
+**Q: Is video supported?**
+A: Only low-FPS MJPEG over RTSP; real-time video calls are not feasible on ESP32.
 
-**What hardware cost should I expect?**
-An ESP32-S3 board plus microphone and speaker starts at a few dollars, suitable for prototyping and small batch production.
+**Q: Is recording supported?**
+A: The server-side pipeline exists; continuous on-device recording is not implemented yet.
+
+**Q: Commercial use?**
+A: MIT license allows commercial use; see the license section.
+
+**Q: How many boards?**
+A: 168 board configurations across 6 chip families.
 
 ---
 
 ## Documentation
 
-| 文档 | 说明 |
+| Doc | Content |
 | --- | --- |
-| [README_zh.md](README_zh.md) | 完整使用、烧录、激活、常见问题 |
-| [docs/custom-board_zh.md](docs/custom-board_zh.md) | 自定义开发板 |
-| [docs/ota_zh.md](docs/ota_zh.md) | OTA 与激活协议 |
-| [docs/websocket_zh.md](docs/websocket_zh.md) | WebSocket 语音协议 |
-| [docs/mcp-usage_zh.md](docs/mcp-usage_zh.md) | MCP 设备控制 |
+| [docs/quickstart_zh.md](docs/quickstart_zh.md) | Customer quick start |
+| [docs/release_zh.md](docs/release_zh.md) | Release process |
+| [docs/features_zh.md](docs/features_zh.md) | GPS, camera, RTSP, lock, scale, RFID |
+| [docs/mcp-usage_zh.md](docs/mcp-usage_zh.md) | MCP device control |
+| [docs/ota.md](docs/ota.md) | OTA protocol |
 
 ---
 
-## 仓库镜像
+## Open source and commercial
 
-- GitHub：`https://github.com/wuzhiguoyy/esp-32`
-- Gitee（国内加速）：`https://gitee.com/wuzhiguo/esp-32`
+### Open source scope
+
+- Firmware source (this repository), MIT license
+- Board configurations and build scripts
+- Documentation
+
+### Commercial services
+
+- Hosted cloud service (voice, LLM, OTA)
+- Custom board adaptation
+- Private deployment support
+
+### Notes
+
+- The firmware does not contain server credentials
+- Service endpoint is obfuscated in source
+- Redistribution must keep the MIT license notice
 
 ---
 
-## 贡献
+## Contributing
 
-欢迎提交 Issue 与 Pull Request。
-
-- 代码风格：Google C++ Style
-- 提交前请在本机 `idf.py build` 通过
-- 新增板型请附 `config.h`、`config.json` 与接线说明
+Issues and pull requests are welcome. Please describe the board model and ESP-IDF version.
 
 ---
 
-## 许可证
+## License
 
-本项目基于 **MIT 协议** 的开源 ESP32 语音框架二次开发，原始版权归原作者所有，`LICENSE` 文件必须保留。
+[MIT](LICENSE) © Shanghai Daoxuan Weishu Information Technology Co., Ltd.
 
-品牌、文档与发行由 **上海道玄微数信息科技有限公司** 维护。
-
-开源范围为设备端固件源码；官方服务器、语音识别、大模型与语音合成属于商业服务。
+---
 
 ## Related keywords
 
 > ESP32 voice assistant, ESP32 AI chat, ESP32-S3 LLM firmware, open-source voice firmware, offline wake word, Opus audio stream, MCP protocol, device activation code, OTA update, AI hardware solution, kids story machine, companion robot, translation pendant, unmanned store access control, GPS tracking, weight sensor, RFID reader, ESP-IDF tutorial
-
----
-
-<div align="center">
-
-**道玄 AI 语音助手** · 让每一块 ESP32 都能开口说话
-
-</div>

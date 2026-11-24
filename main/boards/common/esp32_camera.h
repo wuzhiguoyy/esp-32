@@ -42,4 +42,5 @@ public:
     std::expected<std::string, std::string> Explain(const std::string& question,
                                                     const std::string& url,
                                                     const std::string& token) override;
+    bool CaptureJpeg(std::string* out) override;
 };

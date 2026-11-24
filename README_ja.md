@@ -31,7 +31,8 @@
 - OLED / LCDディスプレイで絵文字や豊かな感情表現を表示し、一部のボードではカメラによる視覚入力にも対応
 - バッテリー表示と電源管理
 - 38言語の画面表示に対応し、音声プロンプトはローカライズ済みリソースを優先して、未収録時は英語へフォールバック
-- ESP32、ESP32-C3、ESP32-C5、ESP32-C6、ESP32-S3、ESP32-P4チッププラットフォーム
+- ESP32、ESP32-C3、ESP32-C5、ESP32-C6、ESP32-S3、ESP32-P4 チッププラットフォーム（ESP8266 非対応）
+- GPS・電子錠・重量センサー・RFID・カメラ撮影アップロード・RTSP 配信（オプション機能、ハードウェア必要）
 - ホットスポットまたはBluFiによるWi-Fiプロビジョニング
 - デバイス側MCPによるデバイス制御（音量・明るさ調整、アクション制御など）
 - クラウド側MCPで大規模モデル能力を拡張（スマートホーム制御、PCデスクトップ操作、知識検索、メール送受信など）
@@ -49,7 +50,7 @@
 
 ![ブレッドボードデモ](docs/v1/wiring2.jpg)
 
-### 138のボードディレクトリと171のリリースバリアントに対応（一部のみ表示）
+### 168のボード設定に対応（一部のみ表示）
 
 - <a href="https://oshwhub.com/li-chuang-kai-fa-ban/li-chuang-shi-zhan-pai-esp32-s3-kai-fa-ban" target="_blank" title="立創・実戦派 ESP32-S3 開発ボード">立創・実戦派 ESP32-S3 開発ボード</a>
 - <a href="https://github.com/espressif/esp-box" target="_blank" title="楽鑫 ESP32-S3-BOX-3">楽鑫 ESP32-S3-BOX-3</a>

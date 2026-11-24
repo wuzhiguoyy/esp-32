@@ -17,6 +17,12 @@ public:
     virtual std::expected<std::string, std::string> Explain(const std::string& question,
                                                             const std::string& url,
                                                             const std::string& token) = 0;
+
+    /**
+     * 抓拍一张 JPEG 并输出原始字节（用于上传到自有服务端）。
+     * 默认不支持，支持的板型重写。
+     */
+    virtual bool CaptureJpeg(std::string* out) { return false; }
 };
 
 #endif  // CAMERA_H

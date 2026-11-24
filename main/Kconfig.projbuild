@@ -42,9 +42,21 @@ config ESP32_LOCATION_INTERVAL_SEC
     default 30
     range 10 3600
 
-config ESP32_SHOP_LOCK
-    bool "Enable door lock (relay) control"
+config ESP32_RTSP_SERVER
+    bool "Enable RTSP MJPEG server (video)"
     default n
+    help
+        Start a minimal RTSP server exposing the camera as MJPEG.
+        Address: rtsp://<ip>:<port>/mjpeg/1
+
+config ESP32_RTSP_PORT
+    int "RTSP port"
+    depends on ESP32_RTSP_SERVER
+    default 8554
+    range 554 65534
+
+config ESP32_SHOP_LOCK
+    bool "Enable door lock (relay) control"    default n
     help
         Control an electromagnetic lock through a relay board.
         Relay must be powered separately; GPIO only drives the signal.

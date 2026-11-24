@@ -9,6 +9,7 @@
 
 #include "application.h"
 #include "features/location_reporter.h"
+#include "features/rtsp_server.h"
 
 #define TAG "main"
 
@@ -29,6 +30,10 @@ extern "C" void app_main(void)
 
     // 可选：GPS 定位上报（未配置 CONFIG_ESP32_FEATURE_GPS 时为空实现）
     LocationReporter::GetInstance().Start();
+
+#if CONFIG_ESP32_RTSP_SERVER
+    RtspServer::GetInstance().Start(CONFIG_ESP32_RTSP_PORT);
+#endif
 
     app.Run();  // This function runs the main event loop and never returns
 }
