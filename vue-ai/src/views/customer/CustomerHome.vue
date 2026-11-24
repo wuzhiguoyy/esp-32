@@ -89,7 +89,7 @@
 <script setup>
 import { onMounted, reactive, ref } from 'vue'
 import { ElMessage, ElMessageBox } from 'element-plus'
-import { customerApi, getCustomerToken, setCustomerToken } from '../api/customer'
+import { customerApi, getCustomerToken, setCustomerToken } from '../../api/customer'
 
 const token = ref(getCustomerToken())
 const tokenInput = ref('')
