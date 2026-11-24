@@ -67,7 +67,7 @@ location /api/ {
 
 ## 接口
 
-全部走 `/api/admin/esp32/**`，返回 DTO，分页统一 `PageBean`。
+全部走 `/api/esp32-console/**`，返回 DTO，分页统一 `PageBean`。
 
 ## 说明
 

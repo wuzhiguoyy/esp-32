@@ -1,6 +1,6 @@
 import { post } from './request'
 
-const P = '/api/admin/esp32'
+const P = '/api/esp32-console'
 
 export const authApi = {
   login: (body) => post(`${P}/auth/login`, body),
