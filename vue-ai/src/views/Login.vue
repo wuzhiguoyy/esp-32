@@ -17,9 +17,9 @@
           </el-form>
         </el-tab-pane>
 
-        <el-tab-pane label="初始化注册" name="register">
+        <el-tab-pane label="注册" name="register">
           <el-alert type="info" :closable="false" show-icon
-                    title="仅当系统还没有任何后台账号时可用，注册后即为超级管理员。" />
+                    title="客户自助注册：注册后可绑定设备。第一个注册的账号为管理员。" />
           <el-form :model="registerForm" label-position="top" class="register" @keyup.enter="doRegister">
             <el-form-item label="用户名">
               <el-input v-model="registerForm.username" placeholder="用户名" />
@@ -43,6 +43,7 @@ import { reactive, ref } from 'vue'
 import { useRouter } from 'vue-router'
 import { ElMessage } from 'element-plus'
 import { setToken, setUser } from '../api/request'
+import { setCustomerToken } from '../api/customer'
 import { authApi } from '../api/admin'
 
 const router = useRouter()
@@ -89,9 +90,14 @@ function afterLogin(data) {
     return
   }
   setToken(data.token)
+  setCustomerToken(data.token)
   setUser({ username: data.username, nickname: data.nickname, role: data.role })
   ElMessage.success('登录成功')
-  router.push('/dashboard')
+  if (data.role === 'USER') {
+    router.push('/my')
+  } else {
+    router.push('/dashboard')
+  }
 }
 </script>
 
