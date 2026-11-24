@@ -1,0 +1,22 @@
+{
+    "manufacturer": "espressif",
+    "type": "esp32-s31-korvo-1",
+    "target": "esp32s31",
+    "preview": true,
+    "builds": [
+        {
+            "name": "esp32-s31-korvo-1",
+            "idf_version": ">=6.1",
+            "build_options": {
+                "camera_orientation": "auto"
+            },
+            "sdkconfig_append": [
+                "CONFIG_CAMERA_OV3660=y",
+                "CONFIG_CAMERA_SC101IOT=y",
+                "CONFIG_CAMERA_SC101IOT_DVP_YUV422_640X480_15FPS=y",
+                "CONFIG_CAMERA_SC101IOT_DVP_YUV422_1280X720_15FPS=n",
+                "CONFIG_CAMERA_SC101IOT_DVP_DEFAULT_FMT_YUV422_640X480_15FPS=y"
+            ]
+        }
+    ]
+}
