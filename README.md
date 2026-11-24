@@ -128,6 +128,15 @@ idf.py -p COM3 flash monitor
 
 `vue-ai/` 提供完整的设备运营后台：
 
+**Live Demo**: <https://wuzhiguoyy.github.io/esp-32/#/login>
+
+<table>
+<tr>
+<td align="center"><img src="docs/v2/登录页.png" width="420"><br>Login</td>
+<td align="center"><img src="docs/v2/初始化注册页.png" width="420"><br>First-time setup</td>
+</tr>
+</table>
+
 ```bash
 cd vue-ai
 npm install

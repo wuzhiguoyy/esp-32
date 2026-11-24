@@ -209,6 +209,15 @@ idf.py merge-bin
 
 `vue-ai/` 是完整的设备运营后台，Vue 3 + Vite + Element Plus。
 
+**在线体验**：<https://wuzhiguoyy.github.io/esp-32/#/login>
+
+<table>
+<tr>
+<td align="center"><img src="docs/v2/登录页.png" width="420"><br>登录页</td>
+<td align="center"><img src="docs/v2/初始化注册页.png" width="420"><br>初始化注册</td>
+</tr>
+</table>
+
 ```bash
 cd vue-ai
 npm install
