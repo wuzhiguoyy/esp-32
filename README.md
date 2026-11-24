@@ -167,7 +167,29 @@ npm run dev
 
 ---
 
-## 文档
+## FAQ
+
+**Can ESP32 run an AI voice assistant?**
+Yes. This firmware handles audio capture, Opus encoding, playback and device control; ASR, LLM and TTS run on the server.
+
+**Which chips are supported?**
+ESP32, ESP32-C3, ESP32-C5, ESP32-C6, ESP32-S3 and ESP32-P4.
+
+**Does it need internet?**
+Wake word detection is on-device; speech recognition, LLM and TTS require network access.
+
+**Which LLM providers work?**
+DeepSeek, Qwen, Doubao and any OpenAI-compatible endpoint. Keys can be configured per platform, per customer or per device.
+
+**Can I self-host the server?**
+Yes. Implement the OTA and WebSocket protocols documented in `docs/`.
+
+**What hardware cost should I expect?**
+An ESP32-S3 board plus microphone and speaker starts at a few dollars, suitable for prototyping and small batch production.
+
+---
+
+## Documentation
 
 | 文档 | 说明 |
 | --- | --- |
