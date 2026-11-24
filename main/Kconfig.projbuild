@@ -56,7 +56,8 @@ config ESP32_RTSP_PORT
     range 554 65534
 
 config ESP32_SHOP_LOCK
-    bool "Enable door lock (relay) control"    default n
+    bool "Enable door lock (relay) control"
+    default n
     help
         Control an electromagnetic lock through a relay board.
         Relay must be powered separately; GPIO only drives the signal.

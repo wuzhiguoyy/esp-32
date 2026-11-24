@@ -1,6 +1,7 @@
 #include "camera_uploader.h"
 
 #include <string>
+#include <utility>
 
 #include <esp_log.h>
 
@@ -82,7 +83,7 @@ bool CameraUploader::CaptureAndUpload(std::string* image_url) {
     http->SetHeader("Device-Id", SystemInfo::GetMacAddress());
     http->SetHeader("Client-Id", board.GetUuid());
     http->SetHeader("Content-Type", "multipart/form-data; boundary=" + boundary);
-    http->SetContent(body);
+    http->SetContent(std::move(body));
 
     std::string url = base + "/api/esp32/file/upload";
     if (auto opened = http->Open("POST", url); !opened) {

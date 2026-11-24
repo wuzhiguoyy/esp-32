@@ -20,6 +20,7 @@ LocationReporter& LocationReporter::GetInstance() {
     return instance;
 }
 
+#if CONFIG_ESP32_FEATURE_GPS
 static std::string BuildBaseUrl(const std::string& ota_url) {
     auto scheme = ota_url.find("://");
     if (scheme == std::string::npos) {
@@ -31,6 +32,7 @@ static std::string BuildBaseUrl(const std::string& ota_url) {
     }
     return ota_url.substr(0, slash);
 }
+#endif // CONFIG_ESP32_FEATURE_GPS
 
 void LocationReporter::Start() {
 #if CONFIG_ESP32_FEATURE_GPS

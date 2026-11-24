@@ -1,5 +1,7 @@
 #include "esp_http.h"
 
+#include <string>
+
 #include <esp_log.h>
 
 #include "board.h"
@@ -44,7 +46,7 @@ bool EspHttpClient::PostJson(const std::string& url, const std::string& json,
         start = end + 1;
     }
 
-    http->SetContent(json);
+    http->SetContent(std::string(json));
 
     if (auto opened = http->Open("POST", url); !opened) {
         ESP_LOGW(TAG, "open failed: %s", opened.error().ToString().c_str());

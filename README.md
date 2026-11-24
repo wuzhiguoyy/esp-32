@@ -72,13 +72,15 @@ Flash the firmware, connect Wi-Fi, and the device can wake on voice, hold real-t
 
 | Feature | Switch | Hardware | Status |
 | --- | --- | --- | --- |
-| GPS location reporting | `ESP32_FEATURE_GPS` | GPS module | Code complete |
-| Door lock / access control | `ESP32_SHOP_LOCK` | Relay + lock | Code complete |
-| HX711 weight sensor | `ESP32_SHOP_WEIGHT` | Load cell | Code complete |
-| RC522 RFID reader | `ESP32_SHOP_RFID` | RC522 module | Code complete |
-| Photo capture & upload | built-in | Camera (JPEG output) | Code complete |
-| RTSP MJPEG streaming | `ESP32_RTSP_SERVER` | Camera | Code complete |
-| Activation code over serial | built-in | None | Code complete |
+| GPS location reporting | `ESP32_FEATURE_GPS` | GPS module | ✅ Build verified |
+| Door lock / access control | `ESP32_SHOP_LOCK` | Relay + lock | ✅ Build verified |
+| HX711 weight sensor | `ESP32_SHOP_WEIGHT` | Load cell | ✅ Build verified |
+| RC522 RFID reader | `ESP32_SHOP_RFID` | RC522 module | ✅ Build verified |
+| Photo capture & upload | built-in | Camera (JPEG output) | ✅ Build verified |
+| RTSP MJPEG streaming | `ESP32_RTSP_SERVER` | Camera | ✅ Build verified |
+| Activation code over serial | built-in | None | ✅ Build verified |
+
+> The ESP32-S3 universal firmware (8MB flash) was built successfully and published as the v1.0.0 release; it has not been validated on real hardware yet. ESP32 / C3 builds will follow.
 
 ### Server-side support
 
@@ -87,6 +89,7 @@ Flash the firmware, connect Wi-Fi, and the device can wake on voice, hold real-t
 | Unified file table | `esp32_file` stores recordings, photos and videos; business keeps only `fileId` |
 | File upload | One endpoint for users, devices and internal services |
 | Video recording | Python pulls RTSP → segments MP4 → uploads → registers metadata |
+| Recording control | Admin APIs to start / stop / query recording |
 | Device location | Coordinate reporting API + `esp32_location` table |
 | Role isolation | Customers see only their devices; admin APIs require admin role |
 
