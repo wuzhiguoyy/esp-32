@@ -21,7 +21,18 @@ export default defineConfig(({ mode }) => {
     },
     build: {
       outDir: 'dist',
-      sourcemap: false
+      sourcemap: false,
+      minify: 'esbuild',
+      esbuild: {
+        drop: ['console', 'debugger']
+      },
+      rollupOptions: {
+        output: {
+          entryFileNames: 'assets/[name]-[hash:10].js',
+          chunkFileNames: 'assets/[name]-[hash:10].js',
+          assetFileNames: 'assets/[name]-[hash:10][extname]'
+        }
+      }
     }
   }
 })
