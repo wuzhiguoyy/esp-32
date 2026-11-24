@@ -120,6 +120,12 @@ idf.py -p COM3 flash monitor
 
 设备联网后屏幕显示 **6 位激活码**，在管理后台或客户端输入该激活码完成绑定，设备自动激活。
 
+### No toolchain? Use prebuilt firmware
+
+End users do not need ESP-IDF. Download the `.bin` and flash with one script:
+
+👉 **[Quick Start (5 steps)](docs/quickstart_zh.md)** · Flasher: [tools/flash.bat](tools/flash.bat)
+
 完整教程：[README_zh.md](README_zh.md)
 
 ---

@@ -203,6 +203,12 @@ idf.py merge-bin
 
 > 未激活设备不能使用语音服务。
 
+### 不想编译？直接烧现成固件
+
+普通客户无需安装 ESP-IDF，下载 bin 用一键脚本烧录即可：
+
+👉 **[客户快速上手指南（5 步）](docs/quickstart_zh.md)** · 烧录工具：[tools/flash.bat](tools/flash.bat)
+
 ---
 
 ## 七、管理后台

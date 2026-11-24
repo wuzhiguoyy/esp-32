@@ -1,0 +1,100 @@
+@echo off
+setlocal
+cd /d "%~dp0"
+
+echo ==========================================
+echo   Daoxuan ESP32 Firmware Flasher
+echo ==========================================
+echo.
+
+rem ---- locate esptool ----
+set "ESPTOOL="
+where esptool.py >nul 2>nul
+if not errorlevel 1 set "ESPTOOL=esptool.py"
+if not defined ESPTOOL (
+    where esptool >nul 2>nul
+    if not errorlevel 1 set "ESPTOOL=esptool"
+)
+if not defined ESPTOOL (
+    python -m esptool version >nul 2>nul
+    if not errorlevel 1 set "ESPTOOL=python -m esptool"
+)
+
+if not defined ESPTOOL (
+    echo [ERROR] esptool not found.
+    echo.
+    echo Install it first:
+    echo     pip install esptool
+    echo.
+    echo Then run this script again.
+    pause
+    exit /b 1
+)
+
+echo [OK] esptool: %ESPTOOL%
+
+rem ---- firmware file ----
+set "BIN=%~1"
+if not defined BIN set "BIN=merged-binary.bin"
+
+if not exist "%BIN%" (
+    echo.
+    echo [ERROR] Firmware not found: %BIN%
+    echo.
+    echo Put your firmware file in this folder, or drag the .bin onto this script.
+    pause
+    exit /b 1
+)
+
+echo [OK] firmware: %BIN%
+
+rem ---- port ----
+set "PORT=%~2"
+if not defined PORT (
+    echo.
+    echo Available serial ports:
+    %ESPTOOL% -p DUMMY read_mac 2>nul | findstr /i "COM"
+    echo.
+    set /p PORT=Enter port ^(example COM3^): 
+)
+if not defined PORT (
+    echo [ERROR] No port.
+    pause
+    exit /b 1
+)
+
+echo.
+echo ==========================================
+echo   Port : %PORT%
+echo   File : %BIN%
+echo   Offset: 0x0
+echo ==========================================
+echo.
+echo Prepare the board:
+echo   1. Hold BOOT button
+echo   2. Press RST button
+echo   3. Release BOOT
+echo.
+pause
+
+%ESPTOOL% --chip auto -p %PORT% -b 921600 write_flash 0x0 "%BIN%"
+if errorlevel 1 (
+    echo.
+    echo [WARN] Fast baud failed, retry at 115200...
+    %ESPTOOL% --chip auto -p %PORT% -b 115200 write_flash 0x0 "%BIN%"
+)
+
+if errorlevel 1 (
+    echo.
+    echo [FAILED] Flash failed.
+    echo Check: USB cable (data cable), driver (CH340/CP210x), download mode.
+) else (
+    echo.
+    echo [DONE] Flash OK. Press RST to reboot the board.
+    echo.
+    echo Next: connect Wi-Fi, the screen shows a 6-digit activation code.
+    echo Register on the website and enter the code to activate.
+)
+
+echo.
+pause
