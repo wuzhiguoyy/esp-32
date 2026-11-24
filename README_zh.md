@@ -26,6 +26,33 @@
 
 > 关键词：ESP32 AI 语音助手、开源语音固件、ESP32-S3 语音对话、离线语音唤醒、大模型语音交互、MCP 设备控制、OTA 远程升级、AI 硬件方案、智能玩具、陪伴机器人、多语种翻译挂件。
 
+### 你可能在搜
+
+如果你正在找下面这些方案，这个项目可以直接用：
+
+- ESP32 接入大模型做语音助手
+- ESP32-S3 语音对话开发板方案
+- 开源 AI 语音固件（可商用、可私有化）
+- 小智同款语音助手固件
+- ESP-IDF 语音项目模板
+- 带激活授权的语音设备方案
+- 支持 DeepSeek / 通义千问 / 豆包的硬件方案
+- 儿童陪伴机器人语音方案
+- 中英翻译挂件方案
+- 无人超市语音 + 门禁方案
+
+### 技术栈
+
+| 层 | 技术 |
+| --- | --- |
+| 固件 | C / C++、ESP-IDF v6.1、FreeRTOS、ESP-SR |
+| 音频 | Opus 16k、I2S、AEC |
+| 协议 | WebSocket、MQTT、HTTP、MCP（JSON-RPC） |
+| 服务端 | Java 17、Spring Boot、MyBatis-Plus、MySQL、Redis |
+| 语音服务 | Python、FastAPI、faster-whisper、edge-tts |
+| 管理后台 | Vue 3、Vite、Element Plus |
+| 存储 | 阿里云 OSS |
+
 ### 为什么选择这个项目
 
 | 优势 | 说明 |
@@ -334,6 +361,7 @@ npm run dev
 | [docs/websocket_zh.md](docs/websocket_zh.md) | WebSocket 语音协议 |
 | [docs/mqtt-udp_zh.md](docs/mqtt-udp_zh.md) | MQTT + UDP 协议 |
 | [docs/mcp-usage_zh.md](docs/mcp-usage_zh.md) | MCP 设备控制 |
+| [docs/features_zh.md](docs/features_zh.md) | 定位、录音、摄像头、防盗扩展 |
 | [docs/mcp-protocol_zh.md](docs/mcp-protocol_zh.md) | MCP 交互流程 |
 | [vue-ai/README.md](vue-ai/README.md) | 管理后台部署 |
 
@@ -406,6 +434,10 @@ A：ESP32-S3 开发板 + 麦克风 + 喇叭，硬件成本约几十元，适合�
 本项目基于 **MIT 协议** 的开源 ESP32 语音框架二次开发，原始版权归原作者所有，`LICENSE` 文件必须保留。
 
 品牌、文档与发行由 **上海道玄微数信息科技有限公司** 维护。
+
+## 相关搜索词
+
+> ESP32 语音助手、ESP32 AI 对话、ESP32-S3 大模型、开源语音固件、离线唤醒词、Opus 语音流、MCP 协议、设备激活码、OTA 升级、AI 硬件方案、儿童故事机、陪伴机器人、翻译挂件、无人超市门禁、GPS 定位上报、称重模块、RFID 读卡、微信小程序语音、智能音箱方案、ESP-IDF 教程
 
 ---
 

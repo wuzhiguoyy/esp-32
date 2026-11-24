@@ -8,6 +8,7 @@
 #include <freertos/task.h>
 
 #include "application.h"
+#include "features/location_reporter.h"
 
 #define TAG "main"
 
@@ -25,5 +26,9 @@ extern "C" void app_main(void)
     // Initialize and run the application
     auto& app = Application::GetInstance();
     app.Initialize();
+
+    // 可选：GPS 定位上报（未配置 CONFIG_ESP32_FEATURE_GPS 时为空实现）
+    LocationReporter::GetInstance().Start();
+
     app.Run();  // This function runs the main event loop and never returns
 }

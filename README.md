@@ -12,6 +12,30 @@
 
 **开箱即用的 AI 语音固件 · OTA 激活 · WebSocket 实时对话 · MCP 设备控制 · Vue 管理后台**
 
+**English keywords**: ESP32 AI voice assistant, open-source ESP32 firmware, ESP32-S3 voice chat, offline wake word, LLM voice interaction, MCP device control, OTA activation, AI hardware solution, smart toy, companion robot, translation pendant.
+
+**What you may be searching for**
+
+- ESP32 voice assistant with DeepSeek / Qwen / Doubao
+- ESP32-S3 voice development board firmware
+- Open-source AI voice firmware for commercial products
+- ESP-IDF voice assistant template
+- Voice firmware with device activation and licensing
+- Kids companion robot voice solution
+- Chinese-English translation pendant
+
+**Tech stack**
+
+| Layer | Technology |
+| --- | --- |
+| Firmware | C / C++, ESP-IDF v6.1, FreeRTOS, ESP-SR |
+| Audio | Opus 16k, I2S, AEC |
+| Protocol | WebSocket, MQTT, HTTP, MCP (JSON-RPC) |
+| Backend | Java 17, Spring Boot, MyBatis-Plus, MySQL, Redis |
+| Voice service | Python, FastAPI, faster-whisper, edge-tts |
+| Admin | Vue 3, Vite, Element Plus |
+| Storage | Alibaba Cloud OSS |
+
 [English](README.md)
 
 </div>
@@ -245,6 +269,10 @@ An ESP32-S3 board plus microphone and speaker starts at a few dollars, suitable 
 品牌、文档与发行由 **上海道玄微数信息科技有限公司** 维护。
 
 开源范围为设备端固件源码；官方服务器、语音识别、大模型与语音合成属于商业服务。
+
+## Related keywords
+
+> ESP32 voice assistant, ESP32 AI chat, ESP32-S3 LLM firmware, open-source voice firmware, offline wake word, Opus audio stream, MCP protocol, device activation code, OTA update, AI hardware solution, kids story machine, companion robot, translation pendant, unmanned store access control, GPS tracking, weight sensor, RFID reader, ESP-IDF tutorial
 
 ---
 

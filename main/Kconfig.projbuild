@@ -6,6 +6,113 @@ config OTA_URL
     help
         The application will access this URL to check for new firmwares and server address.
 
+menu "Device Features (optional)"
+
+config ESP32_FEATURE_GPS
+    bool "Enable GPS location reporting"
+    default n
+    help
+        Read NMEA data from a GPS module over UART and report the position
+        to the server periodically. Boards without GPS leave this disabled.
+
+config ESP32_GPS_UART_NUM
+    int "GPS UART port (0/1/2)"
+    depends on ESP32_FEATURE_GPS
+    default 1
+    range 0 2
+
+config ESP32_GPS_TX_GPIO
+    int "GPS UART TX GPIO (-1 = not used)"
+    depends on ESP32_FEATURE_GPS
+    default -1
+
+config ESP32_GPS_RX_GPIO
+    int "GPS UART RX GPIO"
+    depends on ESP32_FEATURE_GPS
+    default 4
+
+config ESP32_GPS_BAUD
+    int "GPS baud rate"
+    depends on ESP32_FEATURE_GPS
+    default 9600
+
+config ESP32_LOCATION_INTERVAL_SEC
+    int "Location report interval (seconds)"
+    depends on ESP32_FEATURE_GPS
+    default 30
+    range 10 3600
+
+config ESP32_SHOP_LOCK
+    bool "Enable door lock (relay) control"
+    default n
+    help
+        Control an electromagnetic lock through a relay board.
+        Relay must be powered separately; GPIO only drives the signal.
+
+config ESP32_LOCK_GPIO
+    int "Lock relay GPIO"
+    depends on ESP32_SHOP_LOCK
+    default 5
+
+config ESP32_LOCK_ACTIVE_LEVEL
+    int "Lock active level (1=high, 0=low)"
+    depends on ESP32_SHOP_LOCK
+    default 1
+    range 0 1
+
+config ESP32_SHOP_WEIGHT
+    bool "Enable HX711 weight sensor"
+    default n
+
+config ESP32_HX711_DOUT_GPIO
+    int "HX711 DOUT GPIO"
+    depends on ESP32_SHOP_WEIGHT
+    default 6
+
+config ESP32_HX711_SCK_GPIO
+    int "HX711 SCK GPIO"
+    depends on ESP32_SHOP_WEIGHT
+    default 7
+
+config ESP32_SHOP_RFID
+    bool "Enable RC522 RFID reader"
+    default n
+    help
+        RC522 must be powered by 3.3V only.
+
+config ESP32_RC522_SPI_HOST
+    int "RC522 SPI host (1 or 2)"
+    depends on ESP32_SHOP_RFID
+    default 1
+    range 1 2
+
+config ESP32_RC522_CS_GPIO
+    int "RC522 CS GPIO"
+    depends on ESP32_SHOP_RFID
+    default 10
+
+config ESP32_RC522_SCK_GPIO
+    int "RC522 SCK GPIO"
+    depends on ESP32_SHOP_RFID
+    default 12
+
+config ESP32_RC522_MOSI_GPIO
+    int "RC522 MOSI GPIO"
+    depends on ESP32_SHOP_RFID
+    default 11
+
+config ESP32_RC522_MISO_GPIO
+    int "RC522 MISO GPIO"
+    depends on ESP32_SHOP_RFID
+    default 13
+
+config ESP32_RC522_RST_GPIO
+    int "RC522 RST GPIO"
+    depends on ESP32_SHOP_RFID
+    default 9
+
+endmenu
+
 choice
     prompt "Flash Assets"
     default FLASH_DEFAULT_ASSETS if !USE_EMOTE_MESSAGE_STYLE

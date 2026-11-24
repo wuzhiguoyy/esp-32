@@ -4,6 +4,8 @@
  */
 
 #include "mcp_server.h"
+
+#include "features/shop_tools.h"
 #include <esp_app_desc.h>
 #include <esp_log.h>
 #include <esp_pthread.h>
@@ -129,6 +131,9 @@ void McpServer::AddCommonTools() {
                 });
     }
 #endif
+
+    // 可选：无人超市外设（门锁 / 称重 / RFID）
+    RegisterShopTools(*this);
 
     // Restore the original tools list to the end of the tools list
     tools_.insert(tools_.end(), std::make_move_iterator(original_tools.begin()),
