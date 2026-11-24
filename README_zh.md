@@ -224,10 +224,33 @@ idf.py merge-bin
 
 > 演示账号仅用于体验功能，请勿修改数据；正式使用请注册自己的账号。
 
+### 后台界面
+
 <table>
 <tr>
-<td align="center"><img src="docs/v2/登录页.png" width="420"><br>登录页</td>
-<td align="center"><img src="docs/v2/初始化注册页.png" width="420"><br>初始化注册</td>
+<td align="center"><img src="docs/v2/登录页.png" width="300"><br>登录</td>
+<td align="center"><img src="docs/v2/初始化注册页.png" width="300"><br>初始化注册</td>
+<td align="center"><img src="docs/v2/概念页.png" width="300"><br>概览</td>
+</tr>
+<tr>
+<td align="center"><img src="docs/v2/设备页.png" width="300"><br>设备</td>
+<td align="center"><img src="docs/v2/设备管理页.png" width="300"><br>设备管理</td>
+<td align="center"><img src="docs/v2/绑定关系页.png" width="300"><br>绑定关系</td>
+</tr>
+<tr>
+<td align="center"><img src="docs/v2/产品管理页.png" width="300"><br>产品管理</td>
+<td align="center"><img src="docs/v2/套餐管理.png" width="300"><br>套餐管理</td>
+<td align="center"><img src="docs/v2/订单管理.png" width="300"><br>订单管理</td>
+</tr>
+<tr>
+<td align="center"><img src="docs/v2/订阅管理.png" width="300"><br>订阅管理</td>
+<td align="center"><img src="docs/v2/用量统计.png" width="300"><br>用量统计</td>
+<td align="center"><img src="docs/v2/固件管理.png" width="300"><br>固件管理</td>
+</tr>
+<tr>
+<td align="center"><img src="docs/v2/模块key.png" width="300"><br>模型 Key</td>
+<td align="center"></td>
+<td align="center"></td>
 </tr>
 </table>
 

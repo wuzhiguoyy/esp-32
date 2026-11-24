@@ -142,10 +142,18 @@ End users do not need ESP-IDF. Download the `.bin` and flash with one script:
 
 > The demo account is for evaluation only. Please do not modify data; register your own account for production use.
 
+### Screenshots
+
 <table>
 <tr>
-<td align="center"><img src="docs/v2/登录页.png" width="420"><br>Login</td>
-<td align="center"><img src="docs/v2/初始化注册页.png" width="420"><br>First-time setup</td>
+<td align="center"><img src="docs/v2/登录页.png" width="300"><br>Login</td>
+<td align="center"><img src="docs/v2/概念页.png" width="300"><br>Dashboard</td>
+<td align="center"><img src="docs/v2/设备管理页.png" width="300"><br>Devices</td>
+</tr>
+<tr>
+<td align="center"><img src="docs/v2/套餐管理.png" width="300"><br>Plans</td>
+<td align="center"><img src="docs/v2/固件管理.png" width="300"><br>Firmware</td>
+<td align="center"><img src="docs/v2/模块key.png" width="300"><br>Model keys</td>
 </tr>
 </table>
 
