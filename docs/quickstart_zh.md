@@ -7,12 +7,26 @@
 
 ## 准备清单
 
-| 项目 | 说明 |
+| 项目 | 要求 |
 | --- | --- |
 | 开发板 | ESP32-S3 / ESP32-C3 等，Flash ≥ 4MB |
 | 麦克风 + 喇叭 | 部分开发板已集成 |
 | USB 数据线 | 能传数据，不是纯充电线 |
-| 电脑 | Windows 10/11 |
+| 电脑系统 | Windows 10 / 11（64 位） |
+| **Python** | **3.10 或更高**（烧录工具 esptool 需要） |
+| esptool | 4.7 或更高 |
+
+> 不想装 Python？看下方「免安装烧录」章节，用 esptool.exe 直接烧。
+
+### 版本对照（照着装）
+
+| 软件 | 版本 | 怎么查 |
+| --- | --- | --- |
+| Python | **3.10+** | `python --version` |
+| esptool | **4.7+** | `esptool --version` |
+| 串口驱动 | 最新 | 设备管理器能看到 COM 口 |
+
+Python 低于 3.10 会报 `esptool requires Python >=3.10`，直接去 python.org 装 3.10 或 3.11。
 
 ---
 
@@ -48,7 +62,24 @@ esp32-s3-box-3-v1.0.0.bin
 pip install esptool
 ```
 
-没装 Python 的话，装一个 3.10+ 版本。
+没装 Python 的话，先装 **Python 3.10 或 3.11**（勾选 Add to PATH），再执行上面的命令。
+
+装完确认：
+
+```bash
+python --version
+esptool --version
+```
+
+### 免安装烧录（不想装 Python）
+
+1. 下载 esptool 独立版：<https://github.com/espressif/esptool/releases>
+   选 `esptool-v4.x.x-windows-amd64.zip`；
+2. 解压得到 `esptool.exe`；
+3. 把它放到 `flash.bat` 同目录；
+4. 双击 `flash.bat`，脚本会自动识别。
+
+这种方式不需要 Python，适合完全不懂技术的客户。
 
 ### 运行烧录脚本
 

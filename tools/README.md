@@ -6,14 +6,32 @@
 
 ## 使用方式
 
-1. 安装 Python 3.10+ 与 esptool：
+### 环境要求
+
+| 项 | 版本 |
+| --- | --- |
+| Python | **3.10 或更高** |
+| esptool | 4.7 或更高 |
+
+### 方式一：装 Python
+
+1. 安装 Python 3.10+（勾选 Add to PATH）；
+2. 安装 esptool：
 
 ```bash
 pip install esptool
 ```
 
-2. 把 `flash.bat` 和固件 `merged-binary.bin` 放在同一目录；
-3. 双击 `flash.bat`，按提示输入串口号。
+### 方式二：免安装
+
+1. 下载 [esptool.exe](https://github.com/espressif/esptool/releases)（选 `esptool-v4.x.x-windows-amd64.zip`）；
+2. 解压出 `esptool.exe`，放到本目录；
+3. 不需要 Python，脚本会自动识别。
+
+### 烧录
+
+1. 把 `flash.bat` 和固件 `merged-binary.bin` 放在同一目录；
+2. 双击 `flash.bat`，按提示输入串口号。
 
 支持把 `.bin` 直接拖到 `flash.bat` 上。
 

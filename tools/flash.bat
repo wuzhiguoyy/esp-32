@@ -9,8 +9,11 @@ echo.
 
 rem ---- locate esptool ----
 set "ESPTOOL="
-where esptool.py >nul 2>nul
-if not errorlevel 1 set "ESPTOOL=esptool.py"
+if exist "%~dp0esptool.exe" set "ESPTOOL=%~dp0esptool.exe"
+if not defined ESPTOOL (
+    where esptool.py >nul 2>nul
+    if not errorlevel 1 set "ESPTOOL=esptool.py"
+)
 if not defined ESPTOOL (
     where esptool >nul 2>nul
     if not errorlevel 1 set "ESPTOOL=esptool"
@@ -23,10 +26,14 @@ if not defined ESPTOOL (
 if not defined ESPTOOL (
     echo [ERROR] esptool not found.
     echo.
-    echo Install it first:
+    echo Option 1: install Python 3.10 or newer, then run:
     echo     pip install esptool
     echo.
-    echo Then run this script again.
+    echo Option 2: no Python needed:
+    echo     download esptool.exe from
+    echo     https://github.com/espressif/esptool/releases
+    echo     put esptool.exe in this folder and run again.
+    echo.
     pause
     exit /b 1
 )
