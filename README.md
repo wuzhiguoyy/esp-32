@@ -138,9 +138,9 @@ End users do not need ESP-IDF. Download the `.bin` and flash with one script:
 
 | Demo account | Password | Role |
 | --- | --- | --- |
-| `admin` | `admin123` | Super admin |
+| `demo` | `demo123` | Viewer (read-only) |
 
-> The demo account is for evaluation only. Please do not change data or password; register your own account for production use.
+> The demo account is for evaluation only. Please do not modify data; register your own account for production use.
 
 <table>
 <tr>
